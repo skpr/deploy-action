@@ -1,0 +1,17 @@
+name: Skpr Deploy
+description: Deploy to Skpr
+inputs:
+  env:
+    description: The environment
+    required: true
+  version:
+    description: The version
+    required: true
+runs:
+  using: composite
+  steps:
+    - id: skpr-deploy
+      run: |
+        echo "Deploying version ${{ inputs.version }} to ${{ inputs.env }}"
+        skpr deploy ${{ inputs.env }} ${{ inputs.version }}
+      shell: bash
